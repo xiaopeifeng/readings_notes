@@ -2,5 +2,6 @@
 
 - mysql
   - Use  ***EXPLAIN***  to know what happend detail about the SQL
-  - Use ***PROFILE*** to know performance details
+  - Use ***PROFILE***   to know performance details
+
 
