@@ -93,10 +93,14 @@ Section 9.2 page 176
 
 合适数据类型
 
-​	优化数据类型提高性能的主要原理是：
+	优化数据类型提高性能的主要原理是：
 
 - 通过选用更小的数据类型减小存储空间，使查询相同数据需要的IO资源降低
 - 通过合适的数据类型加速数据的比较。
 
+Section 10.3 page 193
 
+Query Cache 真的是 “葵花宝典” 吗？
+
+MySQL  的 Query Cache 的实现原理实际上并不是特别复杂，简单来说就是将客户端请求的 Query 语句 （仅限于 SELECT 类型的 Query）通过一定的 Hash 算法进行一个计算，得到一个 Hash 值，存放在一个 Hash 桶中。同时将该 Query 的结果集 (Result Set) 也存放在一个内存 Cache 中。存放在 Query hash 值的链表中每一个 hash 值所在节点的同时，还存放了该 Query 所对应的 Result Set 的 Cache 所在的内存地址，以及该 Query 涉及的所有 Table 标识等一些其他信息，系统接收到一个 Select 类型的 Query 时，首先计算出其 hash 值，然后通过该 hash 值到 Query Cache 中去匹配，如果找到了完全相同的 Query，则直接将之前所缓存的 Result Set 返回给客户端，完全不需要进行后面的任何步骤即可完成这次请求。而后端的任何一个表的任何一条数据发生变化之后，也会通知 Query Cache，需要将所有跟该 Table 相关的 Query的 Cache 全部失效。
 
