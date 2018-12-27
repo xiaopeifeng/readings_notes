@@ -10,3 +10,10 @@ SELECT * FROM INFORMATION_SCHEMA.OPTIMIZER_TRACE;
 SET optimizer_trace="enabled=off";
 ```
 
+##### set slow log
+```shell
+SET GLOBAL slow_query_log = 'ON';
+SET GLOBAL long_query_time = X;
+sql to execute;
+SET GLOBAL slow_query_log = 'OFF';
+```
