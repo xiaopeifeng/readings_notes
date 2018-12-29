@@ -17,3 +17,7 @@ SET GLOBAL long_query_time = X;
 sql to execute;
 SET GLOBAL slow_query_log = 'OFF';
 ```
+
+##### WAL Write-ahead logging 技术
+
+##### 两阶段提交技术
